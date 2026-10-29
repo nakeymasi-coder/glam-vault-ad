@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Glam Prompt Vault — Your Next Post? You Decide.</title>
+<meta name="description" content="Pick a category, pick a style, pick a palette — watch it change. A playful preview of the Glam Prompt Vault: 1,214 all-original prompts in 33 categories.">
+<link rel="icon" type="image/png" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-512.png">
+<style>
+  :root{
+    --sapphire:#2f6fd0; --sapphire-deep:#1d3f7e; --ink:#241a3f; --pearl:#faf7ff;
+    --chrome:#c9d4e6; --pink:#f0569f; --gold:#d9a441; --lav:#9a7fd0; --emerald:#1f8a5f;
+    --accent:#2f6fd0;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink);
+    background:
+      radial-gradient(1200px 600px at 80% -5%, rgba(47,111,208,.20), transparent 60%),
+      radial-gradient(900px 500px at -10% 30%, rgba(240,86,159,.10), transparent 55%),
+      linear-gradient(180deg,#eef4ff 0%, #faf7ff 45%, #fdf7ee 100%);
+    min-height:100vh;
+  }
+  .wrap{max-width:560px;margin:0 auto;padding:22px 18px 40px}
+  .badge{
+    display:inline-block;background:linear-gradient(135deg,#2a1b54,#4a2d8f);
+    color:#f2efff;font-weight:700;letter-spacing:.22em;font-size:12px;
+    padding:9px 18px;border-radius:999px;box-shadow:0 6px 18px rgba(42,27,84,.28);
+  }
+  .badge .dot{color:#9fc2ff}
+  header{text-align:center;padding:8px 0 4px}
+  /* HERO */
+  .hero{
+    position:relative;margin-top:18px;border-radius:26px;overflow:hidden;
+    box-shadow:0 24px 50px rgba(29,63,126,.28);border:1px solid rgba(255,255,255,.65);
+    background:#dfe9fa;
+  }
+  .hero img{display:block;width:100%;height:auto}
+  .hero::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg, rgba(20,16,48,0) 55%, rgba(20,16,48,.45) 100%);
+    pointer-events:none;
+  }
+  .brandmark{
+    position:absolute;top:14px;left:0;right:0;text-align:center;z-index:2;
+    color:#fff;font-family:Georgia,"Times New Roman",serif;letter-spacing:.28em;
+    font-size:15px;text-shadow:0 2px 10px rgba(20,16,48,.55);font-weight:700;
+  }
+  .brandmark small{display:block;letter-spacing:.34em;font-size:9px;margin-top:3px;opacity:.92}
+  .life-btn{
+    position:absolute;left:50%;transform:translateX(-50%);bottom:18px;z-index:3;
+    display:inline-flex;align-items:center;gap:9px;border:none;cursor:pointer;
+    background:rgba(250,247,255,.96);color:#342060;font-weight:700;font-size:16px;
+    padding:13px 24px;border-radius:999px;box-shadow:0 10px 26px rgba(10,6,30,.35);
+  }
+  .life-btn:active{transform:translateX(-50%) scale(.97)}
+  .life-btn .play{
+    width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,var(--sapphire),#7aa7ec);
+    color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:11px;padding-left:2px;
+  }
+  /* HEADLINE */
+  h1{
+    text-align:center;font-family:Georgia,"Times New Roman",serif;font-weight:700;
+    font-size:42px;line-height:1.08;margin-top:26px;color:var(--ink);
+  }
+  h1 em{
+    font-style:italic;background:linear-gradient(120deg,var(--sapphire),#7aa7ec 60%,var(--pink));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .sub{text-align:center;font-size:17px;color:#5a4f78;margin-top:10px;line-height:1.45}
+  /* PREVIEW */
+  .preview{
+    margin-top:22px;border-radius:24px;padding:30px 20px 22px;text-align:center;
+    color:#fff;position:relative;overflow:hidden;
+    box-shadow:0 18px 40px rgba(29,63,126,.25);
+    background:linear-gradient(150deg,#7aa7ec,#2f6fd0 55%,#1d3f7e);
+    transition:background .5s ease;
+  }
+  .preview .cat-label{font-size:12px;letter-spacing:.3em;font-weight:700;opacity:.92;text-transform:uppercase}
+  .bigword{
+    font-family:Georgia,"Times New Roman",serif;font-weight:900;font-size:96px;line-height:1.05;
+    margin:8px 0 4px;letter-spacing:.01em;
+  }
+  .w-sapphire{background:linear-gradient(180deg,#cfe6ff 5%,#5e9bf5 55%,#14479e);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 3px 6px rgba(10,30,80,.45))}
+  .w-diamond{background:linear-gradient(180deg,#ffffff 10%,#dfe7f2 40%,#8fa3c0 58%,#f4f8ff 80%,#b9c7dd);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 3px 6px rgba(30,40,70,.4))}
+  .w-bubble{font-family:"Arial Rounded MT Bold","Segoe UI",Arial,sans-serif;background:linear-gradient(180deg,#ffc7e3 5%,#f778b5 55%,#d61c7c);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 3px 6px rgba(120,10,70,.4))}
+  .w-glass{background:linear-gradient(180deg,rgba(255,255,255,.95),rgba(210,228,248,.55) 55%,rgba(255,255,255,.9));-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 2px 5px rgba(20,40,80,.35))}
+  .prompt-line{font-size:15px;opacity:.96}
+  .prompt-line b{font-weight:700}
+  .styled{
+    margin-top:16px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.35);
+    border-radius:14px;padding:12px 14px;font-size:15px;line-height:1.45;backdrop-filter:blur(3px);
+  }
+  /* STEPS */
+  .step{margin-top:26px}
+  .step h2{font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:#4a3f6e;display:flex;align-items:center;gap:10px}
+  .step h2 .num{
+    background:linear-gradient(135deg,var(--sapphire),#7aa7ec);color:#fff;font-weight:800;
+    width:28px;height:28px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:13px;letter-spacing:0;
+  }
+  .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+  .chip{
+    border:2px solid #d9def0;background:#fff;color:var(--ink);cursor:pointer;
+    font-size:15px;font-weight:600;padding:11px 16px;border-radius:999px;
+    box-shadow:0 4px 12px rgba(36,26,63,.06);transition:all .15s ease;
+  }
+  .chip:active{transform:scale(.96)}
+  .chip.on{border-color:var(--accent);background:linear-gradient(135deg,#eef4ff,#fdf2f9);box-shadow:0 6px 16px rgba(47,111,208,.22)}
+  .chip small{display:block;font-weight:500;font-size:12px;color:#7a6f9c;margin-top:1px}
+  /* INSIDE */
+  .inside{margin-top:32px}
+  .inside h2{text-align:center;font-family:Georgia,serif;font-size:24px}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+  .card{
+    background:#fff;border:1px solid #e6e2f4;border-radius:18px;padding:16px;
+    box-shadow:0 8px 20px rgba(36,26,63,.06);
+  }
+  .card .big{font-family:Georgia,serif;font-size:24px;font-weight:700;color:var(--sapphire-deep)}
+  .card .lbl{font-size:14px;color:#5a4f78;margin-top:3px;line-height:1.4}
+  /* CTA */
+  .cta{
+    display:block;text-align:center;margin-top:30px;text-decoration:none;
+    background:linear-gradient(135deg,#2a1b54,#4a2d8f 55%,#2f6fd0);color:#fff;
+    font-size:19px;font-weight:800;padding:19px 20px;border-radius:18px;
+    box-shadow:0 16px 34px rgba(42,27,84,.35);letter-spacing:.01em;
+  }
+  .cta:active{transform:scale(.985)}
+  .cta small{display:block;font-weight:500;font-size:13.5px;opacity:.88;margin-top:4px}
+  footer{text-align:center;margin-top:22px;font-size:13px;color:#8a80a8;line-height:1.6}
+  /* MODAL */
+  .modal{
+    position:fixed;inset:0;background:rgba(14,10,32,.82);display:none;z-index:50;
+    align-items:center;justify-content:center;padding:18px;
+  }
+  .modal.open{display:flex}
+  .modal-box{width:min(420px,100%);text-align:center}
+  .modal video{
+    width:100%;border-radius:22px;box-shadow:0 30px 60px rgba(0,0,0,.5);
+    border:1px solid rgba(255,255,255,.35);background:#000;
+  }
+  .modal .cap{color:#e9e4ff;font-size:14px;margin-top:12px;letter-spacing:.04em}
+  .modal .x{
+    margin-top:14px;background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.4);
+    font-size:15px;font-weight:700;padding:10px 22px;border-radius:999px;cursor:pointer;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header><span class="badge">GLAM <span class="dot">✦</span> PROMPT <span class="dot">✦</span> VAULT</span></header>
+
+  <div class="hero">
+    <div class="brandmark">GLAM PROMPT VAULT<small>HER NEXT POST STUDIO</small></div>
+    <img src="hero.webp" alt="The Glam Doll of the Glam Prompt Vault, in a light sapphire suit in her vanity studio">
+    <button class="life-btn" id="lifeBtn"><span class="play">▶</span> Watch her come to life</button>
+  </div>
+
+  <h1>Your next post?<br><em>You decide.</em></h1>
+  <p class="sub">Pick a category. Pick a style. Pick a palette —<br>and watch it change, right here. 🦋</p>
+
+  <div class="preview" id="preview">
+    <div class="cat-label" id="catLabel">Typography Art</div>
+    <div class="bigword w-sapphire" id="bigWord">GLAM</div>
+    <div class="prompt-line">Sample prompt: <b id="promptName">Star Sapphire Script — Type 21</b></div>
+    <div class="styled" id="styledLine">You just styled a <b>Typography Art</b> look in <b>Star Sapphire Jeweled Script</b>, <b>Sapphire &amp; Pearl</b>. Inside the Vault there are 1,213 more where that came from.</div>
+  </div>
+
+  <div class="step">
+    <h2><span class="num">1</span> Pick a category</h2>
+    <div class="chips" id="catChips">
+      <button class="chip" data-cat="Glam Dolls" data-prompt="Sapphire Muse — Doll 04">Glam Dolls<small>Characters that stop the scroll</small></button>
+      <button class="chip" data-cat="Luxury Lifestyle" data-prompt="Pearl Morning — Lifestyle 12">Luxury Lifestyle<small>Soft life, rich visuals</small></button>
+      <button class="chip" data-cat="Jewelry &amp; Bling" data-prompt="Diamond Cascade — Bling 07">Jewelry &amp; Bling<small>All the sparkle</small></button>
+      <button class="chip on" data-cat="Typography Art" data-prompt="Star Sapphire Script — Type 21">Typography Art<small>Words that wear diamonds</small></button>
+    </div>
+  </div>
+
+  <div class="step">
+    <h2><span class="num">2</span> Pick a style</h2>
+    <div class="chips" id="styleChips">
+      <button class="chip on" data-style="Star Sapphire Jeweled Script" data-cls="w-sapphire">Star Sapphire Jeweled Script</button>
+      <button class="chip" data-style="Juicy Diamond Script" data-cls="w-diamond">Juicy Diamond Script</button>
+      <button class="chip" data-style="Pink Bubble Disco" data-cls="w-bubble">Pink Bubble Disco</button>
+      <button class="chip" data-style="Liquid Glass Clear" data-cls="w-glass">Liquid Glass Clear</button>
+    </div>
+  </div>
+
+  <div class="step">
+    <h2><span class="num">3</span> Pick a palette</h2>
+    <div class="chips" id="palChips">
+      <button class="chip on" data-pal="Sapphire &amp; Pearl" data-bg="linear-gradient(150deg,#7aa7ec,#2f6fd0 55%,#1d3f7e)">Sapphire &amp; Pearl</button>
+      <button class="chip" data-pal="Pink &amp; Gold" data-bg="linear-gradient(150deg,#f7a8c9,#e7549c 55%,#a12c66)">Pink &amp; Gold</button>
+      <button class="chip" data-pal="Lavender Chrome" data-bg="linear-gradient(150deg,#c3b2ee,#8a6fd0 55%,#4c3585)">Lavender Chrome</button>
+      <button class="chip" data-pal="Emerald &amp; Gold" data-bg="linear-gradient(150deg,#5fc493,#1f8a5f 55%,#0d5c3c)">Emerald &amp; Gold</button>
+    </div>
+  </div>
+
+  <div class="inside">
+    <h2>What's inside the Vault</h2>
+    <div class="grid">
+      <div class="card"><div class="big">1,214</div><div class="lbl">All-original prompts, written in Glam's own words</div></div>
+      <div class="card"><div class="big">33</div><div class="lbl">Categories — Glam Dolls to Color Palettes</div></div>
+      <div class="card"><div class="big">Searchable</div><div class="lbl">Find any prompt fast, no endless scrolling</div></div>
+      <div class="card"><div class="big">Copy &amp; go</div><div class="lbl">Tap, copy, paste into your image tool, create</div></div>
+    </div>
+  </div>
+
+  <a class="cta" href="https://payhip.com/b/54LoK">Join the Glam Prompt Vault — $160<small>Tap to step inside the full library</small></a>
+
+  <footer>Glam Prompt Vault 🦋 an all-original prompt + image library<br>for creators who want their next post handled.</footer>
+</div>
+
+<div class="modal" id="lifeModal" role="dialog" aria-label="Watch her come to life">
+  <div class="modal-box">
+    <video id="lifeVideo" src="video.mp4" poster="hero.webp" muted loop playsinline preload="metadata"></video>
+    <div class="cap">Character animation — Glam Prompt Vault</div>
+    <button class="x" id="lifeClose">Close ✕</button>
+  </div>
+</div>
+
+<script>
+  var state = { cat: "Typography Art", style: "Star Sapphire Jeweled Script", pal: "Sapphire & Pearl", prompt: "Star Sapphire Script — Type 21" };
+  var preview = document.getElementById('preview'),
+      bigWord = document.getElementById('bigWord'),
+      catLabel = document.getElementById('catLabel'),
+      promptName = document.getElementById('promptName'),
+      styledLine = document.getElementById('styledLine');
+
+  function render(){
+    catLabel.textContent = state.cat;
+    promptName.textContent = state.prompt;
+    styledLine.innerHTML = 'You just styled a <b>' + state.cat + '</b> look in <b>' + state.style + '</b>, <b>' + state.pal + '</b>. Inside the Vault there are 1,213 more where that came from.';
+  }
+  function wire(id, fn){
+    var box = document.getElementById(id);
+    box.addEventListener('click', function(e){
+      var btn = e.target.closest('.chip'); if(!btn) return;
+      box.querySelectorAll('.chip').forEach(function(c){ c.classList.remove('on'); });
+      btn.classList.add('on'); fn(btn);
+    });
+  }
+  wire('catChips', function(btn){
+    state.cat = btn.getAttribute('data-cat');
+    state.prompt = btn.getAttribute('data-prompt');
+    render();
+  });
+  wire('styleChips', function(btn){
+    state.style = btn.getAttribute('data-style');
+    bigWord.className = 'bigword ' + btn.getAttribute('data-cls');
+    render();
+  });
+  wire('palChips', function(btn){
+    state.pal = btn.getAttribute('data-pal');
+    preview.style.background = btn.getAttribute('data-bg');
+    render();
+  });
+
+  var modal = document.getElementById('lifeModal'),
+      video = document.getElementById('lifeVideo');
+  document.getElementById('lifeBtn').addEventListener('click', function(){
+    modal.classList.add('open');
+    video.currentTime = 0;
+    video.play();
+  });
+  function closeModal(){ modal.classList.remove('open'); video.pause(); }
+  document.getElementById('lifeClose').addEventListener('click', closeModal);
+  modal.addEventListener('click', function(e){ if(e.target === modal) closeModal(); });
+  render();
+</script>
+</body>
+</html>
